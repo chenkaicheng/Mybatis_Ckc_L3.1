@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ckc.mybatis.l3.mapper.UserMapper">
+	<sql id="selectalluser">
+		select
+		id,username,password,real_name,phone_number,gender,birthday,address,regist_time,state
+	</sql>
+	<resultMap type="com.ckc.mybatis.l3.domain.User" id="userresultMap">
+		<id column="id" property="id" />
+		<result column="username" property="username" />
+		<result column="password" property="password" />
+		<result column="real_name" property="realName" />
+		<result column="gender" property="gender" />
+		<result column="birthday" property="birthday" />
+		<result column="phone_number" property="phoneNumber" />
+		<result column="address" property="address" />
+		<result column="regist_time" property="registTime" />
+		<result column="state" property="state" />
+	</resultMap>
+	<select id="selectUserById" resultMap="userresultMap" parameterType="java.lang.Integer">
+		<include refid="selectalluser"/> from tb_user where id=#{id}
+	</select>
+</mapper>
